@@ -26,6 +26,24 @@ public class JobService {
         return jobRepository.save(newJob);
     }
 
+    public JobPosting updateJob(Long id, String title, String desc, String loc, double salary) {
+        LoggerSingleton.getInstance().log("Updating job posting ID: " + id); []
+
+        JobPosting existingJob = jobRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Job not found with id: " + id));
+
+        existingJob = new JobPosting.Builder()
+                .setTitle(title)
+                .setDescription(desc)
+                .setLocation(loc)
+                .setSalary(salary)
+                .build();
+
+        existingJob.setId(id);
+
+        return jobRepository.save(existingJob);
+    }
+
     public List<JobPosting> getAllJobs() {
         return jobRepository.findAll();
     }

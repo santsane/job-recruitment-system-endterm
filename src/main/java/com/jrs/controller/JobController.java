@@ -29,6 +29,16 @@ public class JobController {
         return jobService.createJob(title, description, location, salary);
     }
 
+    @PutMapping("/{id}")
+    public JobPosting updateJob(@PathVariable Long id, @RequestBody Map<String, Object> body) {
+        String title = (String) body.get("title");
+        String description = (String) body.get("description");
+        String location = (String) body.get("location");
+        double salary = Double.parseDouble(body.get("salary").toString());
+
+        return jobService.updateJob(id, title, description, location, salary);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteJob(@PathVariable Long id) {
         jobService.deleteJob(id);
