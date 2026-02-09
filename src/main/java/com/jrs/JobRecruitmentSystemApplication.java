@@ -1,4 +1,4 @@
-package com.jrs.job_recruitment_system;
+package com.jrs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

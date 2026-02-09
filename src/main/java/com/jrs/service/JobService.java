@@ -27,7 +27,7 @@ public class JobService {
     }
 
     public JobPosting updateJob(Long id, String title, String desc, String loc, double salary) {
-        LoggerSingleton.getInstance().log("Updating job posting ID: " + id); []
+        LoggerSingleton.getInstance().log("Updating job posting ID: " + id);
 
         JobPosting existingJob = jobRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Job not found with id: " + id));
