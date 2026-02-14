@@ -96,3 +96,21 @@ The schema is created automatically by Spring Boot using my Java classes:
     users table: Stores the ID, name, email, and the type of user. It also has columns for portfolio links or company names.
 
     job_postings table: Stores all the information about the jobs like title and salary.
+
+
+Memory Cache Update:
+I added a Singleton Cache to improve the speed of getAllJobs(). It saves the data in RAM memory.
+
+    I created the JobCache class, it uses Singleton so only 1 cache instance is in the project's memory.
+
+    When user calls GET /api/jobs, the service first looks in the Cache:
+
+        If jobs are in memory then it returns them;
+
+        If the memory is empty, the Service takes jobs from the Database and saves them in Cache for future use.
+
+    The Cache is cleared either when you Create, Update or Delete a job. This makes sure that the data is relevant
+
+    Cache Logic: src/main/java/com/jrs/patterns/JobCache.java
+
+    Service Logic: src/main/java/com/jrs/service/JobService.java
